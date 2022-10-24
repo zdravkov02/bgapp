@@ -27,23 +27,8 @@ pipeline
 
             {
 
-                sh '''
-
-                    cd /bgapp
-
-                    if [ -d /bgapp ]; then
-
-                      cd /bgapp
-
-                      git pull http://192.168.99.102:3000/zdravkov/bgapp.git
-
-                    else
-
-                      git clone http://192.168.99.102:3000/zdravkov/bgapp.git
-
-                    fi
-
-                    '''
+                sh 'git clone http://192.168.99.102:3000/zdravkov/bgapp.git'
+ 
 
             }
 
@@ -116,7 +101,12 @@ pipeline
             }
 
         }
-
+        
+        stage('Clean')
+        {
+            steps
+            {
+                cleanWs()
     }
 
 }
