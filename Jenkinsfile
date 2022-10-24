@@ -45,7 +45,7 @@ pipeline
 
             {
 
-                sh 'cd /bgapp && docker image build -t img-web -f Dockerfile.web .'
+                sh 'docker image build -t img-web -f Dockerfile.web .'
 
             }
 
@@ -79,7 +79,7 @@ pipeline
 
             {
 
-                sh 'cd /bgapp && docker image build -t img-db -f Dockerfile.db .'
+                sh 'docker image build -t img-db -f Dockerfile.db .'
 
             }
 
