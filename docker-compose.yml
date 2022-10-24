@@ -16,7 +16,7 @@ services:
 
         volumes:
 
-            - "$(pwd)/bgapp/web:/var/www/html:ro"
+            - "/bgapp/web:/var/www/html:ro"
 
         networks:
 
