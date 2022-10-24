@@ -27,7 +27,10 @@ pipeline
 
             {
 
-                sh 'git clone http://192.168.99.102:3000/zdravkov/bgapp.git'
+                sh '''
+                rm -rf bgapp || true
+                git clone http://192.168.99.102:3000/zdravkov/bgapp.git
+                '''
  
 
             }
