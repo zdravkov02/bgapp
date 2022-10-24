@@ -63,7 +63,7 @@ pipeline
 
                 docker container rm -f web || true
 
-                docker container run -d --name web --net appnet -p 8080:80 
+                docker container run -d --name web --net appnet -p 8080:80 img-web
 
                 '''
 
