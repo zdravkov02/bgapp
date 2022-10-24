@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+
+    web:
+
+        build:
+
+            context: .
+
+            dockerfile: Dockerfile.web
+
+        ports:
+
+            - 8080:80
+
+        volumes:
+
+            - "$(pwd)/bgapp/web:/var/www/html:ro"
+
+        networks:
+
+            - appnet
+
+        depends_on:
+
+            - db
+
+    db:
+
+        build:
+
+            context: .
+
+            dockerfile: Dockerfile.db
+
+        networks:
+
+            - appnet
+
+        environment:
+
+            MYSQL_ROOT_PASSWORD: "12345"
+
+networks:
+
+    appnet:
