@@ -29,11 +29,11 @@ pipeline
 
                 sh '''
 
-                    cd /projects
+                    cd /bgapp
 
-                    if [ -d /projects/bgapp ]; then
+                    if [ -d /bgapp ]; then
 
-                      cd /projects/bgapp
+                      cd /bgapp
 
                       git pull http://192.168.99.102:3000/zdravkov/bgapp.git
 
@@ -57,7 +57,7 @@ pipeline
 
             {
 
-                sh 'cd /projects/bgapp && docker image build -t img-web -f Dockerfile.web .'
+                sh 'cd /bgapp && docker image build -t img-web -f Dockerfile.web .'
 
             }
 
@@ -91,7 +91,7 @@ pipeline
 
             {
 
-                sh 'cd /projects/bgapp && docker image build -t img-db -f Dockerfile.db .'
+                sh 'cd /bgapp && docker image build -t img-db -f Dockerfile.db .'
 
             }
 
