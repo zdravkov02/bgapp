@@ -107,6 +107,6 @@ pipeline
             steps
             {
                 cleanWs()
-    }
-
+            }
+        }
 }
