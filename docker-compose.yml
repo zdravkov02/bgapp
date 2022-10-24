@@ -16,7 +16,7 @@ services:
 
         volumes:
 
-            - "/bgapp/web:/var/www/html:ro"
+            - "/web:/var/www/html:ro"
 
         networks:
 
