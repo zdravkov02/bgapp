@@ -104,13 +104,5 @@ pipeline
             }
 
         }
-        
-        stage('Clean')
-        {
-            steps
-            {
-                cleanWs()
-            }
-        }
     }
 }  
