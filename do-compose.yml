@@ -8,10 +8,9 @@ services:
         ports:
 
             - 80:80
+        depends_on:
 
-       
-
-        
+            - db    
 
     db:
         image: zdravkov/img-db
