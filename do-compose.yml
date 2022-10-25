@@ -9,10 +9,6 @@ services:
 
             - 80:80
 
-        volumes:
-
-            - "/home/jenkins/workspace/BG-APP-project/web:/var/www/html:ro"
-
         networks:
 
             - appnet
@@ -27,11 +23,3 @@ services:
         networks:
 
             - appnet
-
-        environment:
-
-            MYSQL_ROOT_PASSWORD: "12345"
-
-networks:
-
-    appnet:
