@@ -2,11 +2,7 @@ version: "3.8"
 
 services:
 
-    web:
-
-        build:
-
-            
+    web:   
         image: zdravkov/img-web
         container_name: web
         ports:
@@ -26,8 +22,6 @@ services:
             - db
 
     db:
-
-        build:
         image: zdravkov/img-db
         container_name: db
         networks:
