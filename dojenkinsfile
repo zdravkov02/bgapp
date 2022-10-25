@@ -1,0 +1,148 @@
+pipeline 
+
+{
+
+    agent
+    {
+        label 'docker-node'
+    }
+
+    environment 
+    {
+        DOCKERHUB_CREDENTIALS=credentials('docker-hub')
+    }
+
+    stages 
+
+    {
+      ##  stage('Create docker network')
+
+        {
+            steps
+            {
+                sh 'docker network ls | grep appnet || docker network create appnet'
+            }
+        }##
+
+        stage('Clone the project') 
+
+        {
+
+            steps 
+
+            {
+
+                sh '''
+                rm -rf bgapp || true
+                git clone http://192.168.99.102:3000/zdravkov/bgapp.git
+                '''
+ 
+
+            }
+
+        }
+
+        stage('Build the Application in STG')
+
+        {
+
+            steps
+
+            {
+
+                sh 'docker compose up -d'
+
+            }
+
+        }
+
+        stage('Testing application reachability')
+
+        {
+
+            steps
+
+            {
+
+
+                echo 'Test #1 - reachability'
+                sh 'echo $(curl --write-out "%{http_code}" --silent --output /dev/null http://192.168.99.102:8080) | grep 200'
+                curl --silent  http://192.168.99.102:8080 | grep София
+
+            }
+
+        }
+
+        stage('Sleep')
+
+        {
+
+            steps
+
+            {
+
+                sh 'sleep 5'
+
+            }
+
+        }
+
+        stage('Testing the DB connection')
+
+        {
+
+            steps
+
+            {
+                echo 'Test #2 - DB connection'
+                sh 'curl --silent  http://192.168.99.102:8080 | grep София'
+
+            }
+
+        }
+
+        stage('Stop and remove containers')
+
+        {
+
+            steps
+
+            {
+
+                sh '''
+
+                docker container rm -f db web
+
+                '''
+
+            }
+
+        }
+
+        stage('Login') 
+        {
+            steps 
+            {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
+        stage('Publishing img to dockerhub')
+
+        {
+
+            steps
+
+            {
+
+                echo 'Publish web img'
+                sh 'docker image tag img-web zdravkov/img-web'
+                sh 'docker push zdravkov/img-web'
+
+                echo 'Publish db img'
+                sh 'docker image tag img-db zdravkov/img-db'
+                sh 'docker push zdravkov/img-db'
+            }
+
+        }
+    }
+}
