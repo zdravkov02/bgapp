@@ -15,4 +15,7 @@ services:
     db:
         image: zdravkov/img-db
         container_name: db
+        environment:
+
+            MYSQL_ROOT_PASSWORD: "12345"
         
