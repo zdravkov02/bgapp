@@ -9,7 +9,8 @@ services:
             context: .
 
             dockerfile: Dockerfile.web
-
+        image: zdravkov/img-web
+        container_name: web
         ports:
 
             - 8080:80
@@ -33,7 +34,8 @@ services:
             context: .
 
             dockerfile: Dockerfile.db
-
+        image: zdravkov/img-db
+        container_name: db
         networks:
 
             - appnet
