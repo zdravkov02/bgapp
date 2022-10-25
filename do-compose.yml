@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+
+    web:
+
+        build:
+
+            
+        image: zdravkov/img-web
+        container_name: web
+        ports:
+
+            - 80:80
+
+        volumes:
+
+            - "/home/jenkins/workspace/BG-APP-project/web:/var/www/html:ro"
+
+        networks:
+
+            - appnet
+
+        depends_on:
+
+            - db
+
+    db:
+
+        build:
+        image: zdravkov/img-db
+        container_name: db
+        networks:
+
+            - appnet
+
+        environment:
+
+            MYSQL_ROOT_PASSWORD: "12345"
+
+networks:
+
+    appnet:
