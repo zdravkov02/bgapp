@@ -59,8 +59,7 @@ pipeline
 
                 echo 'Test #1 - reachability'
                 sh 'echo $(curl --write-out "%{http_code}" --silent --output /dev/null http://192.168.99.102:8080) | grep 200'
-                curl --silent  http://192.168.99.102:8080 | grep София
-
+                
             }
 
         }
