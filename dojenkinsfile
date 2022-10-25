@@ -34,7 +34,7 @@ pipeline
 
         }
 
-        stage('Build the Application in STG')
+        stage('Deploy the Application in STG')
 
         {
 
