@@ -15,15 +15,7 @@ pipeline
     stages 
 
     {
-      ##  stage('Create docker network')
-
-        {
-            steps
-            {
-                sh 'docker network ls | grep appnet || docker network create appnet'
-            }
-        }##
-
+      
         stage('Clone the project') 
 
         {
